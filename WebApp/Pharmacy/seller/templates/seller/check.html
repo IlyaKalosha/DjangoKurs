@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Чек</h1>
+    <p>=======================</p>
+    <p>Заказ №{{check_info_table.0.0}}</p>
+    <p>{{check_info_table.0.2}} {{check_info_table.0.3}}</p>
+    <p>{{check_info_table.0.4}}</p>
+    <p>Продавец</p>
+    <p>{{check_info_table.0.5}} {{check_info_table.0.6}} {{check_info_table.0.7}}</p>
+    <p>=======================</p>
+    {% for item in check_basket_table %}
+        <p>{{item.2}}   {{item.3}}  x  {{item.1}}  =  {{item.5}}</p>
+    {% endfor %}
+    <p>=======================</p>
+    <p>{{check_info_table.0.1}}</p>
+</body>
+</html>

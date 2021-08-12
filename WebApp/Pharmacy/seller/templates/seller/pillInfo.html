@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: #f5f5dc;
+        }
+        html,
+        body {
+            height: 100%;
+        }
+        .scroll-none::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="{% url 'seller_home' %}">Pharmacy</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-item nav-link" href="{% url 'seller_home' %}">Home</a>
+                  <a class="nav-item nav-link active" href="{% url 'seller_pill' %}">Препараты</a>
+                  <a class="nav-item nav-link" href="{% url 'seller_recipe' %}">Рецепты</a>
+                  <a class="nav-item nav-link" href="{% url 'seller_storage' %}">Заказ</a>
+                </div>
+              </div>
+        </nav>
+        <div class="border h-100 border-light p-3 mb-4">
+        <div class="row" >
+            <div class="col scroll-none" style="overflow-x: auto;">
+                <table class="table table-hover table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Наименование</th>
+                      <th scope="col">Цена</th>
+                      <th scope="col">Дата выпуска</th>
+                      <th scope="col">Годен до</th>
+                      <th scope="col">Категория</th>
+                      <th scope="col">Производитель</th>
+                      <th scope="col">Штрихкод</th>
+                      <th scope="col">ID рецепта</th>
+                      <th scope="col">Информация</th>
+                      <th scope="col">Количество</th>
+                      <th scope="col">Аптека</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for item in table%}
+                    <tr>
+                      <th scope="row">{{item.0}}</th>
+                      <td>{{item.1}}</td>
+                      <td>{{item.2}}</td>
+                      <td>{{item.3}}</td>
+                        <td>{{item.4}}</td>
+                      <td>{{item.5}}</td>
+                      <td>{{item.6}}</td>
+                        <td>{{item.7}}</td>
+                      <td>{{item.8}}</td>
+                      <td>{{item.9}}</td>
+                        <td>{{item.12}}</td>
+                      <td>{{item.13}}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <div class="bg-dark rounded p-2 mb-2">
+                    <form method="post" class="text-light">
+                        <label class="text-light py-2">Поиск по наименованию</label>
+                        <div class="form-group">
+                            {{pillSearchNameForm}}
+                        </div>
+                        <div class="form-group">
+                             <input type="submit" name="pillsearchname" class="btn btn-primary">
+                        </div>
+                    </form>
+                  </div>
+                <div class="bg-dark rounded p-2 mb-2">
+                    <form method="post" class="text-light">
+                        <label class="text-light py-2">Поиск по категории</label>
+                        <div class="form-group">
+                            {{pillSearchCategoryForm}}
+                        </div>
+                        <div class="form-group">
+                             <input type="submit" name="pillsearchcategory" class="btn btn-primary">
+                        </div>
+                    </form>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
